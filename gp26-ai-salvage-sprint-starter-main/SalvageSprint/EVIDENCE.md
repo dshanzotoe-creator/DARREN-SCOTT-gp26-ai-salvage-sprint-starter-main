@@ -5,16 +5,15 @@ Keep this short. Bullet points, a small table and one diagram or code trace are 
 Name: Darren Scott
 Exact Unity version: 6000.3.26f1
 Checkpoint commit / repository: 
-Current stage and anything unfinished: Stage 1 
+Current stage and anything unfinished: Stage 2 
 
 ## Initial prediction
 
-Three observations the rival needs, including one it might not have: The distance from the scrap, if the scrap is visible, and memory of previous scraps.
+Three observations the rival needs, including one it might not have:
 
-Seeing a pickup across a gap proves / does not prove reachability because: Seeing a pickup across a gap doesn't automatically prove that there is no reachability because there could be
-multiple different paths around the gap. This has to do with the ability of the AI having proper pathfinding.
+Seeing a pickup across a gap proves / does not prove reachability because:
 
-One question about NPC behaviour: A question I have always wanted an answer to regarding video game AI, is how "reputation" works and affects NPCs. Take skyrim for example, your reputation can vary in different regions around the map, this changes the NPCS favorability/likeability towards the player. What is the core structure for this type of AI?
+One question about NPC behaviour:
 
 ## One complete trace
 
