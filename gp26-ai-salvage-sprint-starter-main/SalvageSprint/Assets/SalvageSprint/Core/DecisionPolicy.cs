@@ -22,9 +22,9 @@ namespace SalvageSprint.Core
             {
                 // Deliberately naive: ignores Visible, Remembered and Blocked.
 
-                bool isEligible = candidate.Available && (candidate.Visible || candidate.Remembered);
 
-                if (isEligible && candidate.DistanceSquared < distance)
+
+                if (IsEligible(candidate) && candidate.DistanceSquared < distance)
                 { nearest = candidate.Id; distance = candidate.DistanceSquared; }
             }
             return new AgentFacts(false, nearest, false);
@@ -41,6 +41,9 @@ namespace SalvageSprint.Core
                 ? new Decision(TaskKind.Collect, facts.SelectedTargetId, "Nearest candidate; reselected each tick")
                 : new Decision(TaskKind.Explore, -1, "No candidate: visit the next survey point");
         }
+
+
+        public static bool IsEligible(Candidate candidate) => candidate.Available && (candidate.Visible || candidate.Remembered);
 
     }
 }
