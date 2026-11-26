@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.0416918">
+  <test-suite type="TestSuite" id="1038" name="Salvage Sprint" fullname="Salvage Sprint" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.041692" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1027" name="SalvageSprint.Tests.dll" fullname="C:/Users/darro/Desktop/gp26-ai-salvage-sprint-starter-main/DARREN-SCOTT-gp26-ai-salvage-sprint-starter-main/gp26-ai-salvage-sprint-starter-main/SalvageSprint/Library/ScriptAssemblies/SalvageSprint.Tests.dll" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.030305" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22120" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1028" name="SalvageSprint" fullname="SalvageSprint" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.029696" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1029" name="Tests" fullname="SalvageSprint.Tests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.029496" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1016" name="Week1PolicyTests" fullname="SalvageSprint.Tests.Week1PolicyTests" classname="SalvageSprint.Tests.Week1PolicyTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.028205" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties>
+              <property name="Category" value="Week1" />
+            </properties>
+            <test-case id="1025" name="Regression_CargoTakesPriorityOverCollection" fullname="SalvageSprint.Tests.Week1PolicyTests.Regression_CargoTakesPriorityOverCollection" methodname="Regression_CargoTakesPriorityOverCollection" classname="SalvageSprint.Tests.Week1PolicyTests" runstate="Runnable" seed="1076620662" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.013121" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="Regression_EmptyWorldDoesNotInventPickupTargets" fullname="SalvageSprint.Tests.Week1PolicyTests.Regression_EmptyWorldDoesNotInventPickupTargets" methodname="Regression_EmptyWorldDoesNotInventPickupTargets" classname="SalvageSprint.Tests.Week1PolicyTests" runstate="Runnable" seed="396370681" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.000220" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="Stage2_HiddenUnknownPickupIsNotAUsableTarget" fullname="SalvageSprint.Tests.Week1PolicyTests.Stage2_HiddenUnknownPickupIsNotAUsableTarget" methodname="Stage2_HiddenUnknownPickupIsNotAUsableTarget" classname="SalvageSprint.Tests.Week1PolicyTests" runstate="Runnable" seed="189352752" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.000132" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="Stage2_PreviouslyKnownPickupMayRemainKnownOutsideSight" fullname="SalvageSprint.Tests.Week1PolicyTests.Stage2_PreviouslyKnownPickupMayRemainKnownOutsideSight" methodname="Stage2_PreviouslyKnownPickupMayRemainKnownOutsideSight" classname="SalvageSprint.Tests.Week1PolicyTests" runstate="Runnable" seed="1385286880" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.000768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="Stage2_VisibleAlternativeBeatsNearerHiddenPickup" fullname="SalvageSprint.Tests.Week1PolicyTests.Stage2_VisibleAlternativeBeatsNearerHiddenPickup" methodname="Stage2_VisibleAlternativeBeatsNearerHiddenPickup" classname="SalvageSprint.Tests.Week1PolicyTests" runstate="Runnable" seed="606591369" result="Passed" start-time="2026-11-26 15:55:33Z" end-time="2026-11-26 15:55:33Z" duration="0.000137" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/darro/AppData/LocalLow/Futuregames Course/Salvage Sprint\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
