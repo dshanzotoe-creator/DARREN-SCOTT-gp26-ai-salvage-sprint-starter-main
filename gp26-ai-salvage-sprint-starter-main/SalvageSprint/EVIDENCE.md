@@ -5,41 +5,42 @@ Keep this short. Bullet points, a small table and one diagram or code trace are 
 Name: Darren Scott
 Exact Unity version: 6000.3.26f1
 Checkpoint commit / repository: 
-Current stage and anything unfinished: Stage 3
+Current stage and anything unfinished: Stage 4
 
 
 ## One complete trace
 
 Use one actual situation. Include the observation data, derived facts, selected task and reason, movement request/result, and how feedback affects a later decision. Identify the responsible code locations. A tiny state diagram can accompany this trace.
 
-I observed that "Observartion.CurrentTargetId" holds the ID of the pickup the rival is currently going for. I derived a fact that "DecisionPolicy.Infer" looks for 
-an eligible candidate with that ID. If it finds one, it keeps it and sets "AgentFacts.RetainedTarget" is false. "Choose" returns "Collect" for the selected ID. The
-reason shows whether the target was retained or newly selected.
-
+Originally I observed that the rival refused to move due to the pickup that is supposed to be "blocked" was still the closest and that there was nothing making
+the rival AI ignore the blocked pickup. Each candidate (pickup) has a "Blocked" flag, which marks a pickup the rival recently failed to reach. Before implementation
+of the rival moving towards the next nearest candidate while a closer candidate is blocked, DeciosionPolicy.Infer "IsEligible" boolean I built, so a blocked 
+candidate was neither kept as the current target nor chosen as a new one. The decision was made to make it so that if another eligible pickup exists, "Choose"
+returns "Collect" for it. If none does, it returns Explore.
 
 
 ## Scenario record
 
 | Scenario | Predicted result | Observed result and short evidence / remaining issue |
 |---|---|---|
-| Normal loop and restart |Target 4 is being pursued and target 5 should be ignored. |The 5th target was ignored and target 4 was pursued. |
+| Normal loop and restart | | |
 | Carrying cargo | | |
-| Hidden / remembered pickup | ||
+| Hidden / remembered pickup | | |
 | Target taken | | |
-| Unreachable target | | |
+| Unreachable target |The current target is blocked and another eligible pickup exists. The rival should switch to the other one.| The pickup outside of the walkalbe area of the AI was ignored and the AI went for the next closest one. |
 | No usable pickup | | |
 
-Supplied test result, with any added tests identified: The states transitioned properly Explore - Collect - Deliver - Collect. All tests from the previous stages 
-and stage 3 passed.
+Supplied test result, with any added tests identified: All supplied tests for stage 4 and all previous tests passed (22 tests). 
 
 Live walkthrough checked by / recording link if used:
 
 ## One correction and one independent check
 
-The original weakness and why it happened: The starter reselected the nearest pickup every time, so a closer one could pull the rival off a useful target.
-I added a check that keeps the current target while it's still eligible.
+The original weakness and why it happened: The rival could stay committed to a pickup it couldn't reach, because eligibility ignored "Blocked".
+I added that check to "IsEligible".
 
-My counterexample or experiment: prediction, observed result, and one limitation: 
+My counterexample or experiment: prediction, observed result, and one limitation: There is currently one limitation; the block is temporary.
+The rival can retry the pickup later, but that doesn't mean the route has become valid.
 
 ## Collaboration and help
 

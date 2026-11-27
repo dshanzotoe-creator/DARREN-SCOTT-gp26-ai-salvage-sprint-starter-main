@@ -20,6 +20,7 @@ namespace SalvageSprint.Core
 
             foreach (Candidate candidate in observation.Candidates)
             {
+
                 if (IsEligible(candidate) && candidate.Id == observation.CurrentTargetId)
                 {
                     return new AgentFacts(false, candidate.Id, true);
@@ -44,7 +45,7 @@ namespace SalvageSprint.Core
         }
 
 
-        public static bool IsEligible(Candidate candidate) => candidate.Available && (candidate.Visible || candidate.Remembered);
+        public static bool IsEligible(Candidate candidate) => candidate.Available && (candidate.Visible || candidate.Remembered) && !candidate.Blocked;
     
 
     }
