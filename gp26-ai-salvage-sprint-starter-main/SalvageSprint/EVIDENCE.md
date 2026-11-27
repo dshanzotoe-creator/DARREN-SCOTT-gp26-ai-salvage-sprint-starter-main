@@ -5,18 +5,16 @@ Keep this short. Bullet points, a small table and one diagram or code trace are 
 Name: Darren Scott
 Exact Unity version: 6000.3.26f1
 Checkpoint commit / repository: 
-Current stage and anything unfinished: Stage 2 
+Current stage and anything unfinished: Stage 3
 
 
 ## One complete trace
 
 Use one actual situation. Include the observation data, derived facts, selected task and reason, movement request/result, and how feedback affects a later decision. Identify the responsible code locations. A tiny state diagram can accompany this trace.
 
-I observed the candidates booleans, this includes: Available, Visible, Remembered, DistanceSquared. The dervied fact I got from the DecisionPolicy was the "Infer"
-method. Originally Infer skips any candidate that is not available and checks which is the closest. Now. with current changes, it checks what it originally checked
-and checks whether the candidate is visible or remembered. The "decision maker" of DecisionPolicy is the "Choose" method. Choose returns "Collect" with that ID, or
-"Explore" if none qualifies; both Collect and Explore are "tasks" (states) to telling what the AI should do. The feedback given is the choosen ID is passed to
-Navigator.Request.
+I observed that "Observartion.CurrentTargetId" holds the ID of the pickup the rival is currently going for. I derived a fact that "DecisionPolicy.Infer" looks for 
+an eligible candidate with that ID. If it finds one, it keeps it and sets "AgentFacts.RetainedTarget" is false. "Choose" returns "Collect" for the selected ID. The
+reason shows whether the target was retained or newly selected.
 
 
 
@@ -24,28 +22,24 @@ Navigator.Request.
 
 | Scenario | Predicted result | Observed result and short evidence / remaining issue |
 |---|---|---|
-| Normal loop and restart | | |
+| Normal loop and restart |Target 4 is being pursued and target 5 should be ignored. |The 5th target was ignored and target 4 was pursued. |
 | Carrying cargo | | |
-| Hidden / remembered pickup |Ignores unknown hidden pickups. |The rival went down to the first visible candidate rather than the "hidden" pickup behind the wall, then preceded to patrol/search for any other pickups.|
+| Hidden / remembered pickup | ||
 | Target taken | | |
 | Unreachable target | | |
 | No usable pickup | | |
 
-Supplied test result, with any added tests identified: All Stage 2 and Regression tests passed. The Overall count is 17 passes and 5 fails (the total count of tests
-was increased in the newset repo).
+Supplied test result, with any added tests identified: The states transitioned properly Explore - Collect - Deliver - Collect. All tests from the previous stages 
+and stage 3 passed.
 
 Live walkthrough checked by / recording link if used:
 
 ## One correction and one independent check
 
-The original weakness and why it happened: The starter picked the nearest candidate with Available && DistanceSquared < distance. 
-It never checked Visible or Remembered, so a nearby unknown hidden pickup could win just by being closer.
+The original weakness and why it happened: The starter reselected the nearest pickup every time, so a closer one could pull the rival off a useful target.
+I added a check that keeps the current target while it's still eligible.
 
-What I changed and why it addresses the cause: I added a rule so a pickup is only eligible if it is available and either visible or remembered. 
-Distance is then only used to compare eligible pickups. I created a lamnda expression boolean named "IsEligible" that checks if the supplied candidate
-meets the proper conditions.
-
-My counterexample or experiment: prediction, observed result, and one limitation:
+My counterexample or experiment: prediction, observed result, and one limitation: 
 
 ## Collaboration and help
 

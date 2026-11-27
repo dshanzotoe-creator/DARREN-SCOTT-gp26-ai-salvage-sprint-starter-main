@@ -12,7 +12,7 @@ namespace SalvageSprint.Core
         public static AgentFacts Infer(Observation observation)
         {
             if (observation.Carrying)
-                return new AgentFacts(true, -1, false);
+                return new AgentFacts(true, observation.CurrentTargetId, false);
 
             int nearest = -1;
             float distance = float.PositiveInfinity;
@@ -20,9 +20,10 @@ namespace SalvageSprint.Core
 
             foreach (Candidate candidate in observation.Candidates)
             {
-                // Deliberately naive: ignores Visible, Remembered and Blocked.
-
-
+                if (IsEligible(candidate) && candidate.Id == observation.CurrentTargetId)
+                {
+                    return new AgentFacts(false, candidate.Id, true);
+                }
 
                 if (IsEligible(candidate) && candidate.DistanceSquared < distance)
                 { nearest = candidate.Id; distance = candidate.DistanceSquared; }
@@ -38,12 +39,13 @@ namespace SalvageSprint.Core
             if (facts.NeedsDelivery)
                 return new Decision(TaskKind.Deliver, -1, "Cargo held: return to depot");
             return facts.HasUsableTarget
-                ? new Decision(TaskKind.Collect, facts.SelectedTargetId, "Nearest candidate; reselected each tick")
+                ? new Decision(TaskKind.Collect, facts.SelectedTargetId, facts.RetainedTarget ? "Retain current eligible target" : "Nearest candidate; reselected each tick")
                 : new Decision(TaskKind.Explore, -1, "No candidate: visit the next survey point");
         }
 
 
         public static bool IsEligible(Candidate candidate) => candidate.Available && (candidate.Visible || candidate.Remembered);
+    
 
     }
 }
