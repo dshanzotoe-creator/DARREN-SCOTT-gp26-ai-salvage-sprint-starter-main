@@ -40,7 +40,7 @@ namespace SalvageSprint.Core
             if (facts.NeedsDelivery)
                 return new Decision(TaskKind.Deliver, -1, "Cargo held: return to depot");
             return facts.HasUsableTarget
-                ? new Decision(TaskKind.Collect, facts.SelectedTargetId, facts.RetainedTarget ? "Retain current eligible target" : "Nearest candidate; reselected each tick")
+                ? new Decision(TaskKind.Collect, facts.SelectedTargetId, facts.RetainedTarget ? "Retain current eligible target" : "Nearest eligible candidate;")
                 : new Decision(TaskKind.Explore, -1, "No candidate: visit the next survey point");
         }
 
